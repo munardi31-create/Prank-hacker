@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>System Security</title>
+
+<style>
+    body {
+        margin: 0;
+        background: #000;
+        color: #00ff41;
+        font-family: monospace;
+        overflow: hidden;
+    }
+
+    .terminal {
+        padding: 25px;
+        font-size: 16px;
+        line-height: 1.7;
+    }
+
+    .title {
+        color: red;
+        font-size: 30px;
+        font-weight: bold;
+        text-align: center;
+        margin-top: 20px;
+        animation: blink 0.7s infinite;
+    }
+
+    .progress {
+        width: 100%;
+        height: 20px;
+        border: 1px solid #00ff41;
+        margin-top: 20px;
+    }
+
+    .bar {
+        height: 100%;
+        width: 0%;
+        background: #00ff41;
+        transition: width 0.3s;
+    }
+
+    .prank {
+        display: none;
+        text-align: center;
+        color: white;
+        font-family: Arial;
+        margin-top: 100px;
+    }
+
+    .prank h1 {
+        color: #00ff41;
+        font-size: 40px;
+    }
+
+    @keyframes blink {
+        50% { opacity: 0.2; }
+    }
+</style>
+</head>
+
+<body>
+
+<div id="hack">
+    <div class="title">⚠ SYSTEM BREACHED ⚠</div>
+
+    <div class="terminal" id="terminal">
+        > Connecting to device...<br>
+    </div>
+
+    <div class="progress">
+        <div class="bar" id="bar"></div>
+    </div>
+
+    <div class="terminal">
+        <span id="percent">0</span>% COMPLETE
+    </div>
+</div>
+
+<div class="prank" id="prank">
+    <h1>😂 KENA PRANK!</h1>
+    <p>HP kamu sebenarnya AMAN.</p>
+    <p>Tidak ada data yang dicuri atau diambil.</p>
+    <p>😎 Cuma simulasi hacker!</p>
+</div>
+
+<script>
+let progress = 0;
+
+const messages = [
+    "Scanning device...",
+    "Bypassing security...",
+    "Checking system files...",
+    "Initializing secure connection...",
+    "Accessing virtual terminal...",
+    "Encrypting fake files...",
+    "Almost complete..."
+];
+
+let terminal = document.getElementById("terminal");
+let bar = document.getElementById("bar");
+let percent = document.getElementById("percent");
+
+let interval = setInterval(() => {
+
+    progress += Math.floor(Math.random() * 8) + 3;
+
+    if (progress >= 100) {
+        progress = 100;
+        clearInterval(interval);
+
+        setTimeout(() => {
+            document.getElementById("hack").style.display = "none";
+            document.getElementById("prank").style.display = "block";
+        }, 1500);
+    }
+
+    bar.style.width = progress + "%";
+    percent.innerText = progress;
+
+    if (progress < 100) {
+        let message =
+            messages[Math.floor(Math.random() * messages.length)];
+
+        terminal.innerHTML +=
+            "> " + message + "<br>";
+
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+}, 700);
+</script>
+
+</body>
+</html>
